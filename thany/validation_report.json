@@ -1,0 +1,80 @@
+{
+  "problem": "Traffic demand prediction",
+  "approach": "Calibrated temporal profile using day 48 same-time demand, early day-49 geohash/prefix offsets, and horizon-decayed recent same-day demand.",
+  "parameters": {
+    "reference_day": 48,
+    "target_day": 49,
+    "decay_scale": 24.0,
+    "offset_weight": 1.0,
+    "recent_points": 6
+  },
+  "data": {
+    "train_shape": [
+      77299,
+      18
+    ],
+    "test_shape": [
+      41778,
+      17
+    ],
+    "train_day_range": [
+      48,
+      49
+    ],
+    "test_day_range": [
+      49,
+      49
+    ]
+  },
+  "validation": [
+    {
+      "cutoff_slot": 2,
+      "cutoff_time": "0:30",
+      "rows": 5296,
+      "scaled_r2": 87.34822565812598,
+      "mae": 0.03222965744447893
+    },
+    {
+      "cutoff_slot": 4,
+      "cutoff_time": "1:00",
+      "rows": 3577,
+      "scaled_r2": 90.37769412978005,
+      "mae": 0.02901895109376828
+    },
+    {
+      "cutoff_slot": 6,
+      "cutoff_time": "1:30",
+      "rows": 1798,
+      "scaled_r2": 92.40965742487734,
+      "mae": 0.02556805742975462
+    }
+  ],
+  "selection": {
+    "selected_strategy": "boosted_ensemble_from_project_root_submission",
+    "source_path": "C:\\Users\\thana\\OneDrive\\Desktop\\Projects\\flipcart-traffic\\submission.csv",
+    "why_selected": "The first temporal-profile upload scored 84.67753 online. This file uses the stronger boosted-ensemble candidate already present in the project root and clips predictions to [0, 1].",
+    "clipped_low_count": 2,
+    "clipped_high_count": 134
+  },
+  "temporal_profile_submission": {
+    "path": "C:\\Users\\thana\\OneDrive\\Desktop\\Projects\\flipcart-traffic\\thany\\traffic_demand_submission_temporal_profile.csv",
+    "shape": [
+      41778,
+      2
+    ],
+    "missing_predictions": 0,
+    "min_prediction": 0.0,
+    "max_prediction": 1.0,
+    "online_score_feedback": 84.67753
+  },
+  "submission": {
+    "path": "C:\\Users\\thana\\OneDrive\\Desktop\\Projects\\flipcart-traffic\\thany\\traffic_demand_submission.csv",
+    "shape": [
+      41778,
+      2
+    ],
+    "missing_predictions": 0,
+    "min_prediction": 0.0,
+    "max_prediction": 1.0
+  }
+}
